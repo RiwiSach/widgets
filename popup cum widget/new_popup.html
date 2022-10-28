@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="jquery.serialize-object.min.js"></script> -->
+    <style>
+        .krist_wrap_popup{
+            position:fixed;
+            left: 50%;
+            top: 50%;
+            -ms-transform: translate(-50%,-50%);
+            -moz-transform:translate(-50%,-50%);
+            -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            box-shadow: 0px 0px 30px 0px rgba(20,24,49,0.7) !important;
+            width:390px;
+            height:434px;
+            background-color: white;
+            border-radius: 5px;
+            padding:8px;
+            display:none;
+        }
+        .popup_sideline {
+            float: left;
+            width: 6%;
+        }
+        .popup_for_lead {
+            text-align: center;
+            float: left;
+            width: 72%;
+            height: 392px;
+            font-family: Roboto;
+            color: #1D1E64;
+            margin-left: 30px;
+            margin-top: 10px;
+        }
+        .popup_close {
+            cursor:pointer;
+            position: fixed;
+            float: right;
+            margin-left: 375px;
+        }
+        .likeus_line {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 66px !important;
+            margin-top: -12px;
+            margin-bottom: 55px !important;
+            text-align: center;
+            width: 40px;
+            border-radius: 20px;
+            border-bottom: 3px solid #9DBFFF;
+        }
+        .popup_footer {
+            position: relative;
+            float: left;
+            width: 100%;
+        }
+        .output_div_onchange{
+            float: right;   
+        }
+        .radio_to_box{
+          opacity: 0;
+          position: fixed;
+          width: 0; 
+        }
+        .radio-container li{
+            cursor: pointer;
+            margin-bottom: 16px;
+            color:#1D1E64;
+            display:block;
+            padding: 9px 20px;
+            font-family: Roboto;
+            font-size: 16px;
+            border: 2px solid #9DBFFF;
+            border-radius:10px;
+        }
+        .feed_lst{
+            list-style:none;
+            padding: 0px;
+            font-weight:700;
+        }
+        .clk_No{
+            display:none;
+        }
+        .clk_doubt{
+            display:none;
+        }
+        .clk_Yes{
+            display:none;
+        }
+        .clk_love{
+            display:none;
+        }
+        .review{
+            padding:5px;
+            border:1px solid black;
+            border-radius:3px; 
+        }
+        .review a{
+            text-decoration: none;
+            color:black;
+        }
+        .output_div_onchange{
+            float:right;
+        }
+        .krist_pop_back_button {
+            color: #1D1E64;
+            display: none;
+            margin-left: 41px;
+            font-family: Roboto;
+            cursor: pointer;
+            position: fixed;
+            font-size: 14px;
+        }
+        .popup_doubt {
+            text-align: center;
+            color: #1D1E64;
+            display: block;
+            float: left;
+            margin-top: 60px;
+            margin-left: 20px;
+            padding: 2px;
+            font-family: Roboto;
+            font-size: 16px;
+            border: 2px solid #9DBFFF;
+            border-radius: 10px;
+            list-style: none;
+            font-weight: 700;
+        }
+        .popup_doubt a {
+            text-decoration: none;
+            color: #1D1E64;
+        }
+        .popup_seedly{
+            cursor: pointer;
+            text-align: center;
+            color: #1D1E64;
+            display: block;
+            width: 30%;
+            float: left;
+            margin-top: 110px;
+            margin-left: 45px;
+            padding: 9px 70px;
+            font-family: Roboto;
+            font-size: 16px;
+            border: 2px solid #9DBFFF;
+            border-radius: 10px;
+            list-style: none;
+            font-weight: 700;
+        }
+        .popup_seedly a {
+            text-decoration: none;
+            color: #1D1E64;
+        }
+        .popup_signup a {
+            text-decoration: none;
+            color: #1D1E64;
+        }
+        .popup_signup {
+            cursor: pointer;
+            text-align: center;
+            color: #1D1E64;
+            display: block;
+            width: 30%;
+            float: left;
+            margin-top: 90px;
+            margin-left: 45px;
+            padding: 9px 70px;
+            font-family: Roboto;
+            font-size: 16px;
+            border: 2px solid #9DBFFF;
+            border-radius: 10px;
+            list-style: none;
+            font-weight: 700;
+        }
+        .popup_doubt h2 {
+            font-size: 18px;
+            padding: 4px;
+            margin: 0px;
+        }
+        .popup_no h2 {
+            font-size: 14px;
+            padding: 4px;
+            margin: 0px;
+        }
+        .popup_no{
+            color: #1D1E64;
+            display: block;
+            margin-top: 50px;
+            float: left;
+            text-align: center;
+            margin-bottom: 16px;
+            margin-left: 15px;
+            padding: 9px 37px;
+            font-family: Roboto;
+            font-size: 18px;
+            list-style: none;
+            font-weight: 700;   
+        }
+        #uemail{
+            color: #1D1E64;
+            display: block;
+            margin-bottom: 16px;
+            margin-top: 25px;
+            margin-left: 15px;
+            padding: 9px 44px 9px 24px;
+            font-family: Roboto;
+            font-size: 14px;
+            border: 2px solid #9DBFFF;
+            border-radius: 10px;
+            list-style: none;
+            font-weight: 700;   
+        }
+        #ufee{
+            color: #1D1E64;
+            display: block;
+            margin-bottom: 16px;
+            margin-left: 15px;
+            padding: 25px 50px 9px 24px;
+            font-family: Roboto;
+            font-size: 14px;
+            border: 2px solid #9DBFFF;
+            border-radius: 10px;
+            list-style: none;
+            font-weight: 700;   
+        }
+         #uemail:focus{
+            outline: none;
+        }
+        #ufee:focus{
+            outline: none;
+        }
+        .krist_pop_submit_form:focus{
+            outline: none;
+        }
+        .krist_pop_submit_form{
+            background-color: transparent;
+            color: #1D1E64;
+            display: block;
+            margin-bottom: 16px;
+            padding: 9px 35px;
+            font-family: Roboto;
+            font-size: 14px;
+            margin-left: 72px;
+            border: 2px solid #9DBFFF;
+            border-radius: 10px;
+            list-style: none;
+            font-weight: 700;   
+        }
+        .clk_yes_signup{
+            position: absolute;
+            font-family: Roboto;
+            font-size: 16px;
+            text-align: center;
+            margin-left: -90px;
+            margin-top: 35px;
+            float: left;
+        }
+        .clk_yes_review{
+            margin-top: 35px;
+            position: absolute;
+            font-family: Roboto;
+            font-size: 16px;
+            text-align: center;
+            left: 0px;
+            left: 50px;        
+        }
+        span#email_check {
+            display: block;
+            margin-top: -17px;
+            position: absolute;
+            margin-left: 40px;
+            font-size: 13px;
+        }
+        span#feed_check {
+            display: block;
+            margin-top: -17px;
+            position: absolute;
+            margin-left: 40px;
+            font-size: 13px;
+        }
+    </style>
+<meta charset="utf-8">
+<title>Popup</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    // jQuery(document).ready(function(){
+    //     jQuery('#popup_form').change(function(){
+    //         var value = jQuery("input[name='feedback']:checked").val();
+    //         alert("Value of Changed Radio is : " +value);
+    //     });
+    // });
+    jQuery(document).ready(function(){
+        jQuery(".popup_signup").hide();
+        jQuery(".popup_option").click(function(){
+            var value = jQuery(this).attr("value");
+            if(value==='no'){
+                jQuery(".popup_for_lead").slideToggle();
+                jQuery(".clk_No").show();
+                jQuery(".krist_pop_back_button").show();
+                jQuery(".clk_doubt").hide();
+                jQuery(".clk_Yes").hide();
+                jQuery(".clk_love").hide();
+            }
+            else if(value==='doubt'){
+                jQuery(".popup_for_lead").slideToggle();
+                jQuery(".krist_pop_back_button").show();
+                jQuery(".clk_doubt").show();
+                jQuery(".popup_doubt").show();
+                jQuery(".clk_No").hide();
+                jQuery(".clk_Yes").hide();
+                jQuery(".clk_love").hide();
+            } 
+            else if(value==='yes'){
+                jQuery(".popup_for_lead").slideToggle();
+                jQuery(".krist_pop_back_button").show();
+                jQuery(".popup_signup").show();
+                jQuery(".clk_No").hide();
+                jQuery(".clk_doubt").hide();
+                jQuery(".clk_Yes").show();
+                jQuery(".clk_yes_signup").show();
+                jQuery(".clk_love").hide();
+            } 
+            else{
+                jQuery(".popup_for_lead").slideToggle();
+                jQuery(".krist_pop_back_button").show();
+                jQuery(".clk_love").show();
+                jQuery(".clk_No").hide();
+                jQuery(".clk_doubt").hide();
+                jQuery(".clk_Yes").hide();
+            } 
+        });        
+    });
+
+    jQuery(document).ready(function(){
+      jQuery(".krist_pop_back_button").click(function(){
+         jQuery(".popup_for_lead").slideToggle();
+         jQuery(".krist_pop_back_button").hide();
+         jQuery(".popup_signup").hide();
+         jQuery(".clk_love").hide();
+         jQuery(".clk_doubt").hide();
+         jQuery(".clk_No").hide();
+         jQuery(".clk_yes_signup").hide();
+        });        
+    });
+
+    // jQuery(document).ready(function(){
+    //   jQuery(".popup_signup").click(function(){
+    //      jQuery(".clk_love").hide();
+    //     });        
+    // });//Query for Yes Option(Sign Up)
+
+    // jQuery(document).ready(function(){
+    //   jQuery(".popup_seedly").click(function(){
+    //      jQuery(".clk_love").hide();
+    //     });        
+    // });//Query for I love it Option(Seedly)
+    jQuery(document).ready(function(){
+      jQuery(".popup_no").click(function(){
+         jQuery(".clk_love").hide();
+        });        
+    });//Query for I love it Option(Seedly)
+
+    jQuery(document).ready(function(){
+      jQuery(".popup_close").click(function(){
+         jQuery(".krist_wrap_popup").hide();
+        });        
+    });
+
+    // jQuery(window).mouseout (function(){
+    //     jQuery('.krist_wrap_popup').slideDown('slow');
+    //     // jQuery(".krist_wrap_popup").css("display","block");
+    // });
+    setTimeout(function(){
+        jQuery('.krist_wrap_popup').slideDown('slow');
+    },5000);
+    
+    
+</script>
+<script type="text/javascript">
+                jQuery(document).ready(function(){
+                    jQuery('#email_check').hide();
+                    jQuery('#feed_check').hide();
+                    
+                        jQuery('#uemail').keyup(function(){
+                            var pop_email=jQuery("#uemail").val();
+                            var email_regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                            if(pop_email.length==''){
+                                jQuery('#email_check').show();
+                                jQuery('#email_check').html("Email field is empty.");
+                                jQuery('#email_check').focus();
+                                jQuery('#email_check').css("color","red");
+                                return false;
+                            }
+                            else{
+                                jQuery('#email_check').hide();
+                            }
+                            if(!email_regex.test(pop_email)){
+                                jQuery('#email_check').show();
+                                jQuery('#email_check').html("Please enter correct email address.");
+                                jQuery('#email_check').focus();
+                                jQuery('#email_check').css("color","red");
+                                return false;
+                            }
+                            else{
+                                jQuery('#email_check').hide();
+                            }
+                     });
+                        jQuery('#ufee').keyup(function(){
+                            var pop_feedmsg=jQuery("#ufee").val();
+                            if(pop_feedmsg.length==''){
+                                jQuery('#feed_check').show();
+                                jQuery('#feed_check').html("Feedback can't be empty.");
+                                jQuery('#feed_check').focus();
+                                jQuery('#feed_check').css("color","red");
+                                return false;
+                            }
+                            else{
+                                jQuery('#feed_check').hide();
+                            }
+                     });
+                    });
+                  
+            </script>
+            <script type="text/javascript">
+                jQuery(document).ready(function(){
+                jQuery('.krist_pop_submit_form').on('click', function(e) {
+                    var email = jQuery('#uemail').val();
+                    var ans = jQuery('#ufee').val();
+                    var feedbk = {useremail:email,feedbacks:ans};
+                    //console.log(JSON.stringify(feedbk))
+                    url = 'https://script.google.com/macros/s/AKfycbx5MtDgbeTiCsBgw6LwuHT5z1OaByeGT4TsAcasT6f7IQfMdHkD/exec'
+                    
+                    if(email.length < 1){
+                        jQuery('#email_check').show();
+                        jQuery('#email_check').html("Please fill out the field.");
+                        jQuery('#email_check').css("color","red");
+                        return false;   
+                    }
+                    if (ans.length < 1) {
+                        jQuery('#feed_check').show();
+                        jQuery('#feed_check').html("Please fill out the field.");
+                        jQuery('#feed_check').css("color","red");
+                        return false;
+                    }
+                      var jqxhr = jQuery.ajax({
+                        url: url,
+                        method: "GET",
+                        dataType: "json",
+                        data:feedbk
+                      }).success(
+                        alert("Your Feedback has been sent.")
+                      );
+                      jQuery("form").trigger("reset");
+                      jQuery(".krist_wrap_popup").hide();
+                      return false;
+                 });
+            });
+            </script>
+</head> 
+<body>
+<div class="krist_wrap_popup">
+    <div class="popup_sideline">
+        <img src="popup_sideline.svg">
+    </div>
+    <div class="popup_for_lead">
+        <h2>Do you trust Kristal.AI with your investments? Let us know :)</h2>
+        <span class="likeus_line">
+        </span>
+        <ul class="feed_lst radio-container"> 
+            <li class="popup_option" value="no">No, I don't trust you.</li>
+            <li class="popup_option" value="doubt">Not enough to invest. I have doubts.</li>  
+            <li class="popup_option" value="yes">Yes, I do.</li> 
+            <li class="popup_option" value="love">Trust you enough to recommend.</li>
+        </ul>
+    </div>
+    <div class="popup_close">
+        <i class="fa fa-times"></i>
+    </div>
+
+
+<!--Output Div for "NO" Option(No)-->
+        <div class="clk_No">
+            <div class="krist_pop_back_button">
+                <h2><i class="fa fa-angle-left" style="font-size:25px;">&nbsp</i>Back</h2>
+            </div>
+            <form>
+                <ul class="popup_no"> 
+                <p>What will help you trust us more?</p>
+                <li><input type="email" name="useremail" id="uemail" placeholder="Your Email ID..."required><span id="email_check" ></span></li>
+                <li><textarea type="text" name="feedbacks" id="ufee" placeholder="Your Feedback Here..."required></textarea><span id="feed_check"></span></li>
+                <li><button type="submit" class="krist_pop_submit_form">Submit</button></li>             
+                </ul>
+            </form>    
+        </div>
+<!--Output Div for "NO" Option(No)-->
+
+<!--Output Div for I have doubt Option(Calendly)-->
+        <div class="clk_doubt">
+            <div class="krist_pop_back_button">
+                <h2><i class="fa fa-angle-left" style="font-size:25px;">&nbsp</i>Back</h2>
+            </div>
+             <ul class="popup_doubt"> 
+                <li>
+                    <h2>Talk to our customer evangelists.</h2>
+                    <h2>[Schedule a Demo]</h2>
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/ritwik-sachdeva/demo?hide_event_type_details=1" style="min-width:310px;height:300px;"></div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+                    <!-- Calendly inline widget end -->
+                </li> 
+             </ul>
+        </div>
+            
+    <!--Output Div for I have doubt Option(Calendly)-->
+
+    <!--Output Div for Yes Option(SignUp)-->
+        <div class="clk_Yes">
+        <div class="krist_pop_back_button">
+            <h2><i class="fa fa-angle-left" style="font-size:25px;">&nbsp</i>Back</h2>
+        </div>
+        
+         <ul class="popup_signup"> 
+            <li>
+              <a href="https://portal.kristal.ai/signup?postSignup=DEFAULT&sol=PREMIUM&gid=665411317.1569844965">Sign Up</a>
+            </li> 
+            <li><h2 class="clk_yes_signup">Great! <br>Explore our platform for global strategies</h2></li>
+        </ul>
+        </div>
+    <!--Output Div for Yes Option(SignUp)-->
+
+    <!--Output Div for I love it Option(Seedly)-->
+        <div class="clk_love">
+        <div class="krist_pop_back_button">
+            <h2><i class="fa fa-angle-left" style="font-size:25px;">&nbsp</i>Back</h2>
+        </div>
+        
+         <ul class="popup_seedly"> 
+            <li>
+              <a href="https://seedly.sg/reviews/robo-advisors/kristal-ai">Review us on Seedly</a></li> 
+            <li><h2 class="clk_yes_review">Great news!<br> Spread the word by reviewing us on Seedly. :)</h2></li>
+            <div>
+        
+        </div>
+        </ul>
+        
+        </div>
+    <!--Output Div for I love it Option(Seedly)-->
+</div>
+</body>
+</html> 

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .wrap_popup{
+            width:600px;
+            height:300px;
+            border:1px solid black;
+            border-radius: 5px;
+            padding:8px;
+        }
+        .popup_for_lead{
+            float: left;
+        }
+        .output_div_onchange{
+            float: right;   
+        }
+        .feed_lst{
+            list-style:none;
+            padding: 0px;
+        }
+        .clk_No{
+            display:none;
+        }
+        .clk_doubt{
+            display:none;
+        }
+        .clk_Yes{
+            display:none;
+        }
+        .clk_love{
+            display:none;
+        }
+        .review{
+            padding:5px;
+            border:1px solid black;
+            border-radius:3px; 
+        }
+        .review a{
+            text-decoration: none;
+            color:black;   
+        }
+        .output_div_onchange{
+            float:right;
+        }
+    </style>
+<meta charset="utf-8">
+<title>Popup</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    // jQuery(document).ready(function(){
+    //     jQuery('#popup_form').change(function(){
+    //         var value = jQuery("input[name='feedback']:checked").val();
+    //         alert("Value of Changed Radio is : " +value);
+    //     });
+    // });
+    jQuery(document).ready(function(){
+        jQuery('.popup_for_lead').change(function(){
+            var value = jQuery("input[name='feedback']:checked").val();
+            if(value==='No'){
+                jQuery(".clk_No").show();
+                jQuery(".clk_doubt").hide();
+                jQuery(".clk_Yes").hide();
+                jQuery(".clk_love").hide();
+            }
+            else if(value==='doubt'){
+                jQuery(".clk_No").hide();
+                jQuery(".clk_doubt").show();
+                jQuery(".clk_Yes").hide();
+                jQuery(".clk_love").hide();
+            } 
+            else if(value==='Yes'){
+                jQuery(".clk_No").hide();
+                jQuery(".clk_doubt").hide();
+                jQuery(".clk_Yes").show();
+                jQuery(".clk_love").hide();
+            } 
+            else{
+                jQuery(".clk_No").hide();
+                jQuery(".clk_doubt").hide();
+                jQuery(".clk_Yes").hide();
+                jQuery(".clk_love").show();
+            }          
+        });
+    });
+</script>
+</head> 
+<body>
+    
+<div class="wrap_popup">
+    <div class="popup_for_lead">
+    <h4>Do you trust us?</h4>
+    <ul class="feed_lst"> 
+        <li><input type="radio" name="feedback" value="No">No</li>
+        <li><input type="radio" name="feedback" value="doubt">I have doubt</li>  
+        <li><input type="radio" name="feedback" value="Yes">Yes</li> 
+        <li><input type="radio" name="feedback" value="love">I love it!</li>
+    </ul>
+    </div>
+    <div class="output_div_onchange">
+        <div class="clk_No">
+         <p>Please to help us become better.</p>
+        </div>
+        <div class="clk_doubt">
+         <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/ritwik-sachdeva/demo" style="min-width:320px;height:630px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+        <!-- Calendly inline widget end -->
+        </div>
+
+        <div class="clk_Yes">
+         <button class="review"><a href="https://portal.kristal.ai/signup?postSignup=DEFAULT&sol=PREMIUM&gid=665411317.1569844965">Sign Up</a></button>
+        </div>
+
+        <div class="clk_love">
+         <button class="review"><a href="https://seedly.sg/reviews/robo-advisors/kristal-ai">Review us on Seedly</a></button>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html> 
